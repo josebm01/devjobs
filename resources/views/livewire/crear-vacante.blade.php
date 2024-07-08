@@ -1,4 +1,4 @@
-<form action="" class="md:w-1/2 space-y-5">
+<form class="md:w-1/2 space-y-5" wire:submit.prevent="crearVacante">
 
     <div>
         <x-input-label for="titulo" :value="__('Título vacante')" />
@@ -26,6 +26,7 @@
     <div>
         <x-input-label for="categoria" :value="__('Categoría')" />
         <select wire:model="categoria" id="categoria" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring focus:rinf-indigo-200 focus:ring-opacity-50">
+            <option value="">-- Seleccione --</option>
             @foreach ($categorias as $categoria)
                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
             @endforeach
@@ -77,7 +78,16 @@
             wire:model="imagen"
             class="block mt-1 w-full" 
             type="file" 
+            accept="image/*" {{-- para aceptar solo imágenes --}}
         />
+
+        <div class="my-5 w-auto">
+            @if ( $imagen )
+                Imagen:
+                <img src="{{ $imagen->temporaryUrl() }}" />
+            @endif
+        </div>
+
         <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
     </div>
 
