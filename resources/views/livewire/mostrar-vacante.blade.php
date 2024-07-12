@@ -39,4 +39,11 @@
             </p>
         </div>
     @endguest
+
+    {{-- Solo para los desarrolladores --}}
+    @cannot('create', App\Models\Vacante::class)
+        @livewire('postular-vacante')
+    @endcan
+    
+    
 </div>

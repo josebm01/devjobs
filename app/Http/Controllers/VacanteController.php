@@ -13,8 +13,13 @@ class VacanteController extends Controller
      */
     public function index()
     {
-        //
-        return view('vacantes.index');
+        //? Restringiendo que el usuario que cumpla la validación de viewAny 
+        if (Gate::allows('viewAny', Vacante::class)){
+            return view('vacantes.index');
+        } else {
+            abort('403', 'Acción no autorizada');
+        }
+        // return view('vacantes.index');
     }
 
     /**
@@ -22,8 +27,14 @@ class VacanteController extends Controller
      */
     public function create()
     {
-        //
-        return view('vacantes.create');
+        //? Restringiendo que el usuario que cumpla la validación de viewAny 
+        if (Gate::allows('create', Vacante::class)){
+            return view('vacantes.create');
+        } else {
+            abort('403', 'Acción no autorizada');
+        }
+
+        // return view('vacantes.create');
     }
 
     /**
