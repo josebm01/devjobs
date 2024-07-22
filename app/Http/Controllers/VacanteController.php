@@ -14,12 +14,12 @@ class VacanteController extends Controller
     public function index()
     {
         //? Restringiendo que el usuario que cumpla la validación de viewAny 
-        if (Gate::allows('viewAny', Vacante::class)){
-            return view('vacantes.index');
-        } else {
-            abort('403', 'Acción no autorizada');
-        }
-        // return view('vacantes.index');
+        // if (Gate::allows('viewAny', Vacante::class)){
+        //     return view('vacantes.index');
+        // } else {
+        //     abort('403', 'Acción no autorizada');
+        // }
+        return view('vacantes.index');
     }
 
     /**
