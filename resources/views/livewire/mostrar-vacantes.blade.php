@@ -9,7 +9,7 @@
                 <p class="text-sm text-gray-500">Último día: {{ \Carbon\Carbon::parse($vacante->ultimo_dia)->translatedFormat('d F Y') }}</p>
             </div>
             <div class="flex flex-col gap-3 p-6 mt-5 md:flex-row items-strech md:mt-0">
-                <a href="" class="px-4 py-2 text-xs font-bold text-center text-white uppercase rounded-lg bg-slate-800">Candidatos</a>
+                <a href="{{ route('candidatos.index', $vacante) }}" class="px-4 py-2 text-xs font-bold text-center text-white uppercase rounded-lg bg-slate-800">({{ $vacante->candidatos->count() }}) Candidatos</a>
                 <a href="{{ route('vacantes.edit', $vacante->id) }}" class="px-4 py-2 text-xs font-bold text-center text-white uppercase bg-blue-600 rounded-lg">Editar</a>
                 <button wire:click="$dispatch('mostrarAlerta', { vacante: {{ $vacante->id }} } )" class="px-4 py-2 text-xs font-bold text-center text-white uppercase bg-red-600 rounded-lg">Eliminar</button>
             </div>
