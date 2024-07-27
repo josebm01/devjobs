@@ -13,7 +13,9 @@
                             <a class="text-3xl font-extrabold text-gray-600" href=" href="{{ route('vacantes.show', $vacante->id) }}">
                                 {{ $vacante->titulo }}
                             </a>
-                            <p class="mb-1 text-base text-gray-600">{{ $vacante->empresa }}</p>
+                            <p class="text-base text-gray-600">{{ $vacante->empresa }}</p>
+                            <p class="text-xs font-bold text-gray-600">{{ $vacante->categoria->categoria }}</p>
+                            <p class="text-base text-gray-600">{{ $vacante->salario->salario }}</p>
                             <p class="text-xs font-bold text-gray-600">Último día para postularse: 
                                <span class="font-normal">
                                     {{ \Carbon\Carbon::parse($vacante->ultimo_dia)->translatedFormat('d F Y') }}

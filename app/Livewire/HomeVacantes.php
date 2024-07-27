@@ -4,15 +4,19 @@ namespace App\Livewire;
 
 use App\Models\Vacante;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class HomeVacantes extends Component
 {
+
+    use WithPagination;
 
     public $termino;
     public $categoria;
     public $salario;
 
     protected $listeners = [ 'terminosBusqueda' => 'buscar' ];
+    protected $queryString = ['termino', 'categoria', 'salario'];
 
 
     public function buscar( $termino, $categoria, $salario )
@@ -25,8 +29,7 @@ class HomeVacantes extends Component
     public function render()
     {
         // $vacantes = Vacante::all();
-
-       
+        
         //? when - se ejecuta cuando hay valores
         $vacantes = Vacante::when($this->termino, function ($query) {
             $query->where(function ($subquery) {
@@ -50,9 +53,9 @@ class HomeVacantes extends Component
             })
             ->paginate(3);
 
-
+ 
         return view('livewire.home-vacantes', [
-            'vacantes' => $vacantes
+            'vacantes' => $vacantes,
         ]);
     }
 
